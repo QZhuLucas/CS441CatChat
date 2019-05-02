@@ -16,7 +16,7 @@ import com.example.catchat.User;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
-    @NonNull
+
 
 
     private Context context;
@@ -30,31 +30,32 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_students,viewGroup,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_students, viewGroup, false);
         return new UserAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        User users =  user.get(i);
+        User users = user.get(i);
         viewHolder.username.setText(users.getName());
-
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return user.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView username;
-        public ImageView profile_Image;
+        public ImageView profile_image;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView){
             super(itemView);
 
             username = itemView.findViewById(R.id.username);
-            profile_Image = itemView.findViewById(R.id.profile_Image);
+            profile_image = itemView.findViewById(R.id.profile_Image);
         }
     }
+
+
 }

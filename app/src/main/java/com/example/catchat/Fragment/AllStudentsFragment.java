@@ -57,24 +57,17 @@ public class AllStudentsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-//                    User user = snapshot.getValue(User.class);
-//
-//                    assert user != null;
-                    String name = snapshot.child("name").getValue().toString();
-                    String country = snapshot.child("country").getValue().toString();
-                    String gender = snapshot.child("gender").getValue().toString();
-                    String phone = snapshot.child("phone").getValue().toString();
-                    String userType = snapshot.child("userType").getValue().toString();
-                    String emailAddress = snapshot.child("emailAddress").getValue().toString();
-                    User user = new User(null,emailAddress,userType,gender,country,name,phone);
 
-                    mUsers.add(user);
-//                    if(!user.getEmailAddress().equals(dataSnapshot.child("emailAddress").getValue())){
-//                        mUsers.add(user);
-//                    }
-
-
-
+                    if(snapshot.child("userType").getValue().toString().equals("Student")){
+                        String name = snapshot.child("name").getValue().toString();
+                        String country = snapshot.child("country").getValue().toString();
+                        String gender = snapshot.child("gender").getValue().toString();
+                        String phone = snapshot.child("phone").getValue().toString();
+                        String userType = snapshot.child("userType").getValue().toString();
+                        String emailAddress = snapshot.child("emailAddress").getValue().toString();
+                        User user = new User(null,emailAddress,userType,gender,country,name,phone);
+                        mUsers.add(user);
+                    }
 
                 }
 
