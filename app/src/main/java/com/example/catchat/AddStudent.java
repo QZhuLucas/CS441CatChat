@@ -61,8 +61,11 @@ public class AddStudent extends AppCompatActivity {
 
     }
 
-    public void select_Onclick(View view){
-
+    public void select_Onclick(View view) {
+        if (spinner.getSelectedItem()!= null) {
+            startActivity(new Intent(this,ChooseStudent.class));
+        }else{
+            Toast.makeText(AddStudent.this, "Please create one class first.", Toast.LENGTH_LONG).show();
+        }
     }
-
 }
