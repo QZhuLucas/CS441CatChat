@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "729381269048",
+    "firebase_url": "https://catchat-9918a.firebaseio.com",
+    "project_id": "catchat-9918a",
+    "storage_bucket": "catchat-9918a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729381269048:android:4129135c80d7a353",
+        "android_client_info": {
+          "package_name": "com.example.catchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729381269048-n9525p8dkl841kt5o8ar6d87o4osd088.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.catchat",
+            "certificate_hash": "e631fe03aaf3e8898974e5f657828d5bbf3d4cef"
+          }
+        },
+        {
+          "client_id": "729381269048-mr100l4nn0gphuquspgbtq22qre4265t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDorP9QxOYu2hyFZBvrWQdSw5RQZE6xmoc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729381269048-mr100l4nn0gphuquspgbtq22qre4265t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
