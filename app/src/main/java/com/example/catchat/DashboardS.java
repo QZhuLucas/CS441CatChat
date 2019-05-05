@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,4 +32,10 @@ public class DashboardS extends AppCompatActivity {
         finish();
         startActivity(new Intent(this, MainActivity.class));
     }
+
+    public void chat_Onclick(View view){
+        startActivity(new Intent(this,ChatRoom.class));
+    }
+
+
 }

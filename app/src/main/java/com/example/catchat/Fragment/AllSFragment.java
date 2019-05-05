@@ -25,8 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllStudentsFragment extends Fragment {
-
+public class AllSFragment extends Fragment {
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
     private List<User> mUsers;
@@ -36,7 +35,7 @@ public class AllStudentsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment\
-        View view = inflater.inflate(R.layout.fragment_all_students, container, false);
+        View view = inflater.inflate(R.layout.fragment_all, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -49,7 +48,7 @@ public class AllStudentsFragment extends Fragment {
     }
 
     private void readUsers() {
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -57,18 +56,20 @@ public class AllStudentsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-
-                    if(snapshot.child("userType").getValue().toString().equals("Student")){
-                        String name = snapshot.child("name").getValue().toString();
-                        String country = snapshot.child("country").getValue().toString();
-                        String gender = snapshot.child("gender").getValue().toString();
-                        String phone = snapshot.child("phone").getValue().toString();
-                        String userType = snapshot.child("userType").getValue().toString();
-                        String emailAddress = snapshot.child("emailAddress").getValue().toString();
-                        String id  = snapshot.child("id").getValue().toString();
-                        User user = new User(null,emailAddress,userType,gender,country,name,phone,id);
-                        mUsers.add(user);
+                    if(!firebaseUser.getUid().equals(snapshot.child("id").getValue().toString())){
+                        if(snapshot.child("userType").getValue().toString().equals("Student")){
+                            String name = snapshot.child("name").getValue().toString();
+                            String country = snapshot.child("country").getValue().toString();
+                            String gender = snapshot.child("gender").getValue().toString();
+                            String phone = snapshot.child("phone").getValue().toString();
+                            String userType = snapshot.child("userType").getValue().toString();
+                            String emailAddress = snapshot.child("emailAddress").getValue().toString();
+                            String id  = snapshot.child("id").getValue().toString();
+                            User user = new User(null,emailAddress,userType,gender,country,name,phone,id);
+                            mUsers.add(user);
+                        }
                     }
+
 
                 }
 

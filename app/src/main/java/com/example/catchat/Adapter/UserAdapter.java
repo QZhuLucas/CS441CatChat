@@ -1,6 +1,7 @@
 package com.example.catchat.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.catchat.Message;
 import com.example.catchat.R;
 import com.example.catchat.User;
 
@@ -36,10 +38,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        User users = user.get(i);
+        final User users = user.get(i);
         viewHolder.username.setText("Name: " + users.getName());
         viewHolder.useremail.setText("Email: " + users.getEmailAddress());
 
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, Message.class);
+                intent.putExtra("userid", users.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

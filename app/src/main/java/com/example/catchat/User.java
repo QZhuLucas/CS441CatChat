@@ -9,12 +9,13 @@ public class User {
   private String country;
   private String name;
   private String phone;
+  private String id;
 
   public User(){
 
   }
 
-  public User( String course, String emailAddress, String userType, String gender, String country, String name, String phone) {
+  public User( String course, String emailAddress, String userType, String gender, String country, String name, String phone, String id) {
 
     this.Course = course;
     this.emailAddress = emailAddress;
@@ -23,6 +24,7 @@ public class User {
     this.country = country;
     this.name = name;
     this.phone = phone;
+    this.id = id;
   }
 
 
@@ -75,4 +77,12 @@ public class User {
   }
 
   public String getPhone() { return phone; }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 }

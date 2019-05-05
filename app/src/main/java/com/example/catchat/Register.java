@@ -146,16 +146,16 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
 
 
-
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User user = new User(null,email,typeUser,gender,country,name,phone);
+                            final String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            User user = new User(null,email,typeUser,gender,country,name,phone,id);
                             FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .child(id)
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {

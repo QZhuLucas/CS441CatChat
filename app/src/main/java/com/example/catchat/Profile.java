@@ -46,7 +46,7 @@ public class Profile extends AppCompatActivity {
                     String userType = dataSnapshot.child("userType").getValue().toString();
                     String userGender = dataSnapshot.child("gender").getValue().toString();
                     String userPhone  = dataSnapshot.child("phone").getValue().toString();
-                    if(!dataSnapshot.child("course").getValue().toString().equals(null)){
+                    if(dataSnapshot.child("course").exists()){
                         String userCourse = dataSnapshot.child("course").getValue().toString();
                         course.setText(userCourse);
                     }
