@@ -54,16 +54,6 @@ public class DashboardS extends AppCompatActivity {
 
         databaseReference.updateChildren(hashMap);
     }
-//
-//    protected void onResume() {
-//        super.onResume();
-//        status("online");
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        status("offline");
-//    }
+
 
 }

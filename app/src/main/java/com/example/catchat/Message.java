@@ -43,7 +43,6 @@ public class Message extends AppCompatActivity {
     private List<Chat> chats;
 
     private RecyclerView recyclerView;
-    private ValueEventListener seenListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +116,9 @@ public class Message extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
         HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("sender", sender);
+        hashMap.put("Sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
-        hashMap.put("isseen",false);
 
         reference.child("Chats").push().setValue(hashMap);
 
@@ -153,9 +151,13 @@ public class Message extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 chats.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Chat chat = snapshot.getValue(Chat.class);
-                    if (chat.getReceiver().equals(myid) && chat.getSender().equals(userid) ||
-                            chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
+                    String sender = snapshot.child("Sender").getValue().toString();
+                    String receiver = snapshot.child("receiver").getValue().toString();
+                    String message = snapshot.child("message").getValue().toString();
+                    Chat chat = new Chat(sender,receiver,message);
+//                    boolean isseen = snapshot.child("isseen").getValue();
+//                    Chat chat = snapshot.getValue(Chat.class);
+                    if (chat.getReceiver().equals(myid) && chat.getSender().equals(userid) || chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
                         chats.add(chat);
                     }
 
