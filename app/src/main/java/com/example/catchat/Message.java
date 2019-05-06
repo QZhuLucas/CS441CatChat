@@ -43,6 +43,7 @@ public class Message extends AppCompatActivity {
     private List<Chat> chats;
 
     private RecyclerView recyclerView;
+    private ValueEventListener seenListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +120,7 @@ public class Message extends AppCompatActivity {
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
+        hashMap.put("isseen",false);
 
         reference.child("Chats").push().setValue(hashMap);
 
@@ -168,6 +170,7 @@ public class Message extends AppCompatActivity {
             }
         });
     }
+
 
 
 }
