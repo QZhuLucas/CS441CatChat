@@ -11,9 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.example.catchat.Fragment.AllSFragment;
-import com.example.catchat.Fragment.AllStudentsFragment;
 import com.example.catchat.Fragment.ChatFragment;
-import com.example.catchat.Fragment.SearchStudentFragment;
 
 import java.util.ArrayList;
 

@@ -36,6 +36,7 @@ public class DashboardS extends AppCompatActivity {
     }
 
     public void signout_onClick(View view){
+        status("offline");
         firebaseAuth.signOut();
         finish();
         startActivity(new Intent(this, MainActivity.class));
@@ -53,16 +54,16 @@ public class DashboardS extends AppCompatActivity {
 
         databaseReference.updateChildren(hashMap);
     }
-
-    protected void onResume() {
-        super.onResume();
-        status("online");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        status("offline");
-    }
+//
+//    protected void onResume() {
+//        super.onResume();
+//        status("online");
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        status("offline");
+//    }
 
 }

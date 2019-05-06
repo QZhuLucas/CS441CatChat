@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
 //        //attaching click listener
         loginButton.setOnClickListener(this);
 
@@ -92,11 +94,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             if(task.isSuccessful()){
 //                                start the dashboard activity
                                 Toast.makeText(MainActivity.this,"Login Success",Toast.LENGTH_LONG).show();
+
                                 finish();
 
                                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                                 final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                                 DatabaseReference uidRef = databaseReference.child("Users").child(uid);
+                                status("online",uidRef);
                                 ValueEventListener valueEventListener = new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -132,6 +136,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             userLogin();
         }
     }
+
+    private void status(String status,DatabaseReference databaseReference){
+//        databaseReference = databaseReference.child(firebaseUser.getUid());
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("status", status);
+
+        databaseReference.updateChildren(hashMap);
+    }
+
+//    protected void onResume() {
+//        super.onResume();
+//        status("online");
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        status("offline");
+//    }
 
 
 
