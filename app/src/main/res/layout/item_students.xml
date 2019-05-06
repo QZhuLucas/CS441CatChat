@@ -47,6 +47,23 @@
                 android:layout_marginLeft="80dp"
                 android:textSize="15sp" />
 
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/online"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/img_on"
+            android:visibility="gone"/>
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/offline"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="40dp"
+            android:id="@+id/img_off"
+            android:visibility="gone"/>
+
     </android.support.v7.widget.CardView>
 
 

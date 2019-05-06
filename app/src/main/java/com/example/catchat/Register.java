@@ -153,7 +153,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             final String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                            User user = new User(null,email,typeUser,gender,country,name,phone,id);
+                            User user = new User(null,email,typeUser,gender,country,name,phone,id,null);
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(id)
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

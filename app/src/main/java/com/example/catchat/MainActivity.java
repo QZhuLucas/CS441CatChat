@@ -17,11 +17,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     private Button loginButton;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 //        //attaching click listener
         loginButton.setOnClickListener(this);
 
@@ -90,12 +95,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 finish();
 
                                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                                final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
                                 DatabaseReference uidRef = databaseReference.child("Users").child(uid);
                                 ValueEventListener valueEventListener = new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         if(dataSnapshot.child("userType").getValue().toString().equals("Teacher")) {
+
                                             startActivity(new Intent(MainActivity.this, DashboardT.class));
                                         } else{
                                             startActivity(new Intent(MainActivity.this, DashboardS.class));
@@ -119,10 +125,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
     @Override
     public void onClick(View view) {
         if(view == loginButton){
             userLogin();
         }
     }
+
+
+
 }

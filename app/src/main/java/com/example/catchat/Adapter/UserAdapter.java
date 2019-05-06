@@ -23,10 +23,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private Context context;
     private List<User> user;
+    private boolean isChat;
 
-    public UserAdapter(Context context, List<User> user){
+    public UserAdapter(Context context, List<User> user, boolean isChat){
         this.context = context;
         this.user = user;
+        this.isChat = isChat;
     }
 
     @NonNull
@@ -42,6 +44,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         viewHolder.username.setText("Name: " + users.getName());
         viewHolder.useremail.setText("Email: " + users.getEmailAddress());
 
+        if(isChat){
+            if(users.getStatus().equals("online")){
+                viewHolder.img_on.setVisibility(View.VISIBLE);
+                viewHolder.img_off.setVisibility(View.GONE);
+            }else {
+                viewHolder.img_off.setVisibility(View.VISIBLE);
+                viewHolder.img_on.setVisibility(View.GONE);
+            }
+        }else{
+            viewHolder.img_off.setVisibility(View.GONE);
+            viewHolder.img_on.setVisibility(View.GONE);
+        }
+
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +65,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 context.startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -59,7 +75,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView username, useremail;
-        public ImageView profile_image;
+        public ImageView profile_image,img_on,img_off;
 
         public ViewHolder(View itemView){
             super(itemView);
@@ -67,6 +83,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             username = itemView.findViewById(R.id.username);
             useremail = itemView.findViewById(R.id.useremail);
             profile_image = itemView.findViewById(R.id.profile_Image);
+            img_on = itemView.findViewById(R.id.img_on);
+            img_off = itemView.findViewById(R.id.img_off);
         }
     }
 

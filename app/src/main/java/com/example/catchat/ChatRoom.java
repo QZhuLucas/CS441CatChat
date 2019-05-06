@@ -21,11 +21,10 @@ public class ChatRoom extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_student);
+        setContentView(R.layout.activity_chat_room);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("");
 
         TabLayout tabLayout = findViewById(R.id.tab);
         ViewPager viewPager = findViewById(R.id.viewPager);
@@ -71,5 +70,7 @@ public class ChatRoom extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return titles.get(position);
         }
+
+
     }
 }

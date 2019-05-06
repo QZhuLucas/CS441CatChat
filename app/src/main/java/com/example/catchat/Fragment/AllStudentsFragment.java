@@ -66,13 +66,14 @@ public class AllStudentsFragment extends Fragment {
                         String userType = snapshot.child("userType").getValue().toString();
                         String emailAddress = snapshot.child("emailAddress").getValue().toString();
                         String id  = snapshot.child("id").getValue().toString();
-                        User user = new User(null,emailAddress,userType,gender,country,name,phone,id);
+                        String status = snapshot.child("status").getValue().toString();
+                        User user = new User(null,emailAddress,userType,gender,country,name,phone,id,status);
                         mUsers.add(user);
                     }
 
                 }
 
-                userAdapter = new UserAdapter(getContext(),mUsers);
+                userAdapter = new UserAdapter(getContext(),mUsers,false);
                 recyclerView.setAdapter(userAdapter);
             }
 
