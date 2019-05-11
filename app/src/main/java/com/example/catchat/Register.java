@@ -75,7 +75,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
 
         if (name.isEmpty()) {
-            editTextName.setError("ERRPR! PLEASE ENTER YOUR FULL NAME.");
+            editTextName.setError("ERRPR! PLEASE ENTER YOUR FULL NAME.!!!!!!");
             editTextName.requestFocus();
             return;
         }
